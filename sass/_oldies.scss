@@ -1,0 +1,12 @@
+/* This is stylesheet for less than IE9 */
+$media-queries: false;
+@import "application";
+.has-js {
+  .choice {
+    input[type="radio"] {
+      display: block;
+      position: absolute;
+      left: -9999px;
+    }
+  }
+}

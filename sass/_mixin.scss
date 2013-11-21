@@ -1,0 +1,27 @@
+// Mixin for media queries that will also work for ltIE9.
+$media-queries: true !default;
+$media-query-free-breakpoint: 1024px;
+
+@mixin mqFor($label) {
+  @if $label == "s" {
+    @if $media-queries {
+      @media screen and (min-width: $SSize) {@content;}
+    } @else if $SSize <= $media-query-free-breakpoint {@content;}
+  }
+  @else if $label == "m" {
+    @if $media-queries {
+      @media screen and (min-width: $MSize) {@content;}
+    } @else if $MSize <= $media-query-free-breakpoint {@content;}
+  }
+  @else if $label == "l" {
+    @if $media-queries {
+      @media screen and (min-width: $LSize) {@content;}
+    } @else if $LSize <= $media-query-free-breakpoint {@content;}
+  }
+}
+
+.content {
+  @include mqFor(s) {
+    This is the media query for $SSize
+  }
+}

@@ -1,6 +1,14 @@
-//Components
-.accordion {
+@import "vars";
+@import "mixin";
 
+// BASE
+body {
+  font-family: $fontWriting;
+  font-size: $default-font-size;
+  line-height: 1.4em;
+}
+// Components
+.accordion {
   .trigger {
     padding: 5px 10px;
     background: #f1f1f1;
