@@ -1,0 +1,98 @@
+// Mixin for media queries that will also work for ltIE9.
+$media-queries: true !default;
+$media-query-free-breakpoint: 1024px;
+
+@mixin mqFor($label) {
+  @if $label == "s" {
+    // If media query is supported
+    @if $media-queries {
+      @media screen and (min-width: $SSize) {
+        @content;
+      }
+    // If small screen size is smalled or equal to 1024px
+    // Use the same code as on media query
+    } @else if $SSize <= $media-query-free-breakpoint {
+      @content;
+    }
+  }
+  @else if $label == "m" {
+    @if $media-queries {
+      @media screen and (min-width: $MSize) {@content;}
+    } @else if $MSize <= $media-query-free-breakpoint {@content;}
+  }
+  @else if $label == "l" {
+    @if $media-queries {
+      @media screen and (min-width: $LSize) {@content;}
+    } @else if $LSize <= $media-query-free-breakpoint {@content;}
+  }
+}
+
+// Accordion
+// there are 3 different types: default with fixed height
+// Custom with auto height
+// Custom with fixed height
+@mixin accordion($title, $definition, $type:false) {
+  // Basic styling for the accordion
+  .#{$title} {
+    padding: 5px 10px;
+    cursor: pointer;
+    &:before {
+      @include transition($transitionEffect);
+    }
+  }
+
+  .#{$definition} {
+    @include transition($transitionEffect);
+    height: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    background: $bgDefinition;
+  }
+
+  .show {
+    .#{$definition} {
+      padding: 20px;
+      height: $accordionHeight;
+    }
+  }
+
+  // This is the default accordion
+  @if $type == false {
+    .#{$title} {
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+
+      &:before {
+        @include border-radius(100%);
+        content: "";
+        display: block;
+        width: 10px;
+        height: 10px;
+        background: #fff;
+        float: left;
+        margin: 4px 10px 2px 0;
+      }
+    }
+    .show .#{$title} {
+      &:before {
+        background: $blue;
+      }
+    }
+  } @else if $type == "with-icon" {
+    .#{$title} {
+      @include icon("#{$iconOnTitle}"){
+        float: left;
+        margin-right: 10px;
+      }
+      background: $bgTitle;
+      color: $colorTitle;
+    }
+    .show {
+      .#{$title} {
+        &:before {
+          @include rotate(180deg);
+        }
+      }
+    }
+  }
+}

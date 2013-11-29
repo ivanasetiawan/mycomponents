@@ -1,0 +1,43 @@
+/* Basic Accordion with 'title' and 'description'
+ * Title refers to the element that triggers the accordion to fire
+ * Description refers to the element that shows as a result of the accordion
+ * Below you can find several variables that can be adjusted according to your design
+ * There are several types of accordion:
+ *
+ * Default with fixed height
+ * Custom with icon on the title
+ * Custom with icon on the title and custom height
+ *
+ * The accordion can also has main categories that seperates each block
+ * This appears a lot on the FAQ page for example.
+ * */
+
+// Background of the title
+$bgTitle: $blue;
+// Color of the title
+$colorTitle: #fff;
+// Background of the definition
+$bgDefinition: #fff;
+// Fixed height of the accordion
+$accordionHeight: 100px;
+
+// If you want a custom icon on the title
+$iconOnTitle: i-arrow;
+// If you want a custom transition effect
+$transitionEffect: all 0.3s ease-in;
+
+// This is the warpper box, necessary when you have multiple categories.
+.accordion-box {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+  .accordion {
+    @include transition($transitionEffect);
+  }
+}
+
+.accordion {
+  @extend %clearlist;
+  @include accordion(question, answer, with-icon);
+}

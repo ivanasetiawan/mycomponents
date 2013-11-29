@@ -1,16 +1,46 @@
-@import "vars";
-@import "mixin";
+// Base
+::-moz-selection {
+  background: $blue;
+  color: #111;
+  text-shadow: none;
+}
 
-// BASE
+::selection {
+  background: $blue;
+  color: #111;
+  text-shadow: none;
+}
+
 body {
-  font-family: $fontWriting;
-  font-size: $default-font-size;
-  line-height: 1.4em;
+  margin: 0;
+  font-family: $font-code;
+  background: url("../images/linedpaper.png");
 }
-// Components
-.accordion {
-  .trigger {
-    padding: 5px 10px;
-    background: #f1f1f1;
-  }
+
+h1 {
+  font-family: $font-text;
 }
+
+a {
+  @include border-radius($default-radius);
+  display: inline-block;
+  padding: 5px 8px;
+  text-decoration: none;
+  background: $blue;
+  color: #fff;
+  margin: 20px 0;
+}
+ul, ol {
+  margin-bottom: 20px;
+}
+.wrap {
+  margin: 0 auto;
+  max-width: $width-base;
+}
+
+@import "vars";
+@import "modules";
+@import "mixins";
+
+
+
